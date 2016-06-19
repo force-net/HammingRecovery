@@ -16,11 +16,15 @@ Usually, data lays in good state, because TCP uses checksums, HDD uses checksums
 
 E.g. you have XML with data 
 
-```<sometag>somedata</sometag>```
+```
+<sometag>somedata</sometag>
+```
 
-And data is slightly damaged:
+And data was slightly damaged:
 
-```<somdtag>somedata</sometag>```
+```
+<somdtag>somedata</sometag>
+```
 
 As result, you receive invalid open tag and invalid close tag. And invalid XML at all.
 
@@ -28,7 +32,7 @@ If you add recovery info to this data, you'll able to restore it automatically.
 
 Some detailed info about size of recovery information:
 
-Block Size | Recovery Info | Data Increase Pcnt
+Data Block Size | Recovery Info Size | Data Increase Pcnt
 -----------|---------------|-------------------
 4          | 3             | 75%
 11         | 4             | 36%
@@ -37,7 +41,9 @@ Block Size | Recovery Info | Data Increase Pcnt
 120        | 7             | 6%
 247        | 8             | 3%
 
-**(Block sizes of greater size currently is not implemented due huge amount of work to calculate recovery info)**
+*(Block sizes of greater size currently is not implemented due huge amount of work to calculate recovery info)*
+
+So, if you select recovery info size to 7, library will add 7 bytes to each 120 bytes of your data and your data will increase on 6%
 
 ## License
 
